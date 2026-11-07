@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#393b3d" />
+    <meta
+      name="description"
+      content="Персональное приглашение на день рождения в игровой комнате BoomBala."
+    />
+    <title>Приглашение на день рождения · BoomBala</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="studio">
+      <header class="studio-bar">
+        <div class="studio-brand">
+          <span class="brand-mark" aria-hidden="true">B</span>
+          <span class="brand-name">BoomBala <small>INVITES</small></span>
+        </div>
+        <p class="studio-room"><span aria-hidden="true"></span> ROBLOX ROOM</p>
+        <p class="studio-state"><span aria-hidden="true"></span> ЧЕРНОВИК</p>
+      </header>
+
+      <main class="workspace">
+        <aside class="editor-panel" aria-labelledby="editor-title">
+          <div class="editor-heading">
+            <p class="eyebrow">ШАБЛОН ПРИГЛАШЕНИЯ · 01</p>
+            <h1 id="editor-title">Настрой приглашение</h1>
+            <p class="editor-intro">Меняй данные слева — предпросмотр обновится сразу.</p>
+          </div>
+
+          <form id="invite-form" autocomplete="off">
+            <fieldset>
+              <legend>Именинник</legend>
+              <label for="child-name">Имя ребёнка</label>
+              <input id="child-name" name="childName" type="text" maxlength="32" placeholder="Например, Арман" />
+
+              <div class="field-row">
+                <div>
+                  <label for="child-age">Возраст</label>
+                  <input id="child-age" name="childAge" type="number" min="1" max="18" inputmode="numeric" placeholder="8" />
+                </div>
+                <div>
+                  <label for="event-date">Дата</label>
+                  <input id="event-date" name="eventDate" type="date" />
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Праздник</legend>
+              <div class="field-row">
+                <div>
+                  <label for="event-time">Время</label>
+                  <input id="event-time" name="eventTime" type="time" />
+                </div>
+                <div>
+                  <label for="event-place">Комната</label>
+              <input id="event-place" name="eventPlace" type="text" value="BoomBala · Игровая комната" maxlength="48" />
+                </div>
+              </div>
+
+              <label for="event-address">Адрес или ориентир</label>
+              <input id="event-address" name="eventAddress" type="text" maxlength="80" placeholder="Добавь адрес праздника" />
+
+              <label for="event-message">Текст приглашения</label>
+              <textarea id="event-message" name="eventMessage" rows="3" maxlength="180">Ждём тебя на самой весёлой игровой вечеринке!</textarea>
+            </fieldset>
+
+            <fieldset>
+              <legend>Фото</legend>
+              <label for="child-photo">Фото именинника</label>
+              <input id="child-photo" name="childPhoto" type="file" accept="image/*" />
+              <p class="field-hint" id="photo-status" aria-live="polite">Фото показывается только в этом предпросмотре и не отправляется на сервер.</p>
+              <button class="clear-photo" id="clear-photo" type="button" disabled>Убрать фото</button>
+            </fieldset>
+          </form>
+
+          <p class="editor-note">
+            Это черновой предпросмотр. Создание ссылки и удаление приглашения по сроку подключим отдельно.
+          </p>
+        </aside>
+
+        <section class="preview-panel" aria-label="Предпросмотр приглашения">
+          <div class="preview-toolbar">
+            <span class="toolbar-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="preview-url">черновик приглашения · игровая комната</span>
+            <span class="preview-label">ПРЕДПРОСМОТР</span>
+          </div>
+
+          <article class="invite-page" aria-label="Сайт-приглашение">
+            <header class="invite-nav">
+              <a class="invite-brand" href="#top" aria-label="BoomBala">
+                <span class="invite-brand-mark" aria-hidden="true">B</span>
+                <span>BoomBala <small>PARTY INVITE</small></span>
+              </a>
+              <span class="nav-room"><span aria-hidden="true">✦</span> ИГРОВАЯ КОМНАТА</span>
+            </header>
+
+            <div id="top">
+              <section class="invite-hero" aria-labelledby="invite-title">
+                <img class="hero-art" src="assets/roblox-quest-world.png" alt="Яркий кубический игровой мир с парящими островами и праздничными шарами" />
+                <div class="hero-shade" aria-hidden="true"></div>
+                <div class="hero-copy">
+                  <p class="hero-kicker"><span aria-hidden="true">✦</span> BOOMBALA · ИГРОВАЯ КОМНАТА</p>
+                  <p class="hero-overline">ТЕБЯ ПРИГЛАШАЮТ</p>
+                  <h2 id="invite-title">На день<br />рождения!</h2>
+                  <p class="hero-name" id="preview-name">Имя именинника</p>
+                  <p class="hero-level" id="preview-age">ГОТОВ К НОВОМУ УРОВНЮ</p>
+                  <a class="action-button" href="#party-details">Открыть приглашение <span aria-hidden="true">↓</span></a>
+                </div>
+
+                <figure class="photo-frame">
+                  <img id="preview-photo" alt="Фото именинника" hidden />
+                  <div class="photo-empty" id="photo-empty">
+                    <span class="photo-cube" aria-hidden="true">✦</span>
+                    <strong>Фото героя</strong>
+                    <small>Добавь в редакторе</small>
+                  </div>
+                  <figcaption>PLAYER 01</figcaption>
+                </figure>
+
+                <span class="hero-sticker" aria-hidden="true">LET’S<br />PLAY!</span>
+              </section>
+
+              <section class="party-details" id="party-details" aria-labelledby="details-title">
+                <div class="details-heading">
+                  <p class="eyebrow">ТВОЯ МИССИЯ</p>
+                  <h3 id="details-title">Увидимся на празднике</h3>
+                </div>
+                <div class="details-grid">
+                  <div class="detail-item">
+                    <span class="detail-icon" aria-hidden="true">01</span>
+                    <div><span class="detail-label">ДАТА</span><strong id="preview-date">Дата праздника</strong></div>
+                  </div>
+                  <div class="detail-item">
+                    <span class="detail-icon" aria-hidden="true">02</span>
+                    <div><span class="detail-label">ВРЕМЯ</span><strong id="preview-time">Время праздника</strong></div>
+                  </div>
+                  <div class="detail-item">
+                    <span class="detail-icon" aria-hidden="true">03</span>
+                  <div><span class="detail-label">КОМНАТА</span><strong id="preview-place">BoomBala · Игровая комната</strong></div>
+                  </div>
+                </div>
+                <p class="address-line" id="preview-address" hidden></p>
+              </section>
+
+              <section class="message-section" aria-label="Сообщение именинника">
+                <span class="message-spark" aria-hidden="true">✦</span>
+                <div>
+                  <p class="eyebrow">ПОДГОТОВЬСЯ К ПРИКЛЮЧЕНИЮ</p>
+                  <p class="message-copy" id="preview-message">Ждём тебя на самой весёлой игровой вечеринке!</p>
+                </div>
+              </section>
+
+              <footer class="invite-footer">
+                <p>Загружайся на праздник — будет круто!</p>
+                <span>С теплом, BoomBala <span aria-hidden="true">✦</span></span>
+              </footer>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
