@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Приглашения · BoomBala</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="demo.css"><script src="demo.js" defer></script>
+</head>
+<body>
+<header class="topbar"><a href="index.html" class="brand"><img src="assets/boombala-logo.webp" alt="BoomBala"></a><div class="header-right"><span>ПРИГЛАШЕНИЯ</span><span class="demo-badge">Демо</span></div></header>
+<main>
+<section id="list-view" class="screen" hidden>
+  <div class="page-heading"><div><p class="eyebrow">BOOMBALA / ОРГАНИЗАТОРУ</p><h1>Праздники</h1></div><button id="new-event" class="primary compact" type="button"><span>＋</span> Новое приглашение</button></div>
+  <p class="subtitle">Все приглашения в одном месте</p><div id="event-list" class="event-list"></div>
+</section>
+<section id="new-view" class="screen wizard" hidden>
+  <button type="button" class="back" data-view="list">← <span>Праздники</span></button>
+  <div class="wizard-heading"><p class="eyebrow">НОВОЕ ПРИГЛАШЕНИЕ</p><h1>Создадим праздник</h1><p class="subtitle">Несколько деталей — и приглашение готово.</p></div>
+  <div class="wizard-layout"><div class="wizard-content">
+  <div class="progress" aria-label="Шаги создания"><div class="progress-top"><span id="step-label"></span><span id="step-number"></span></div><div class="progress-track"><div id="progress-fill"></div></div><div class="progress-labels"><span>Комната</span><span>Именинник</span><span>Дата</span><span>Гости</span></div></div>
+  <div class="mobile-preview preview-slot"></div>
+  <form id="event-form" novalidate>
+    <div class="form-card step" data-step="0"><p class="card-kicker">01 / КОМНАТА</p><h2>Выберите комнату</h2><p class="card-help">Где будет проходить праздник?</p><div class="room-options">
+        <button type="button" class="room-option selected" data-room="Roblox Room" aria-pressed="true"><span class="room-art room-art-roblox"><img class="room-scene" src="assets/party-play.webp" alt=""><img class="room-symbol" src="assets/flaticon/game.png" alt=""></span><span class="room-copy"><strong>Roblox Room</strong><small>Игровой мир</small></span><span class="room-check">✓</span></button>
+        <button type="button" class="room-option" data-room="Ice Room" aria-pressed="false"><span class="room-art room-art-ice"><img class="room-figure" src="assets/ice-celebration.webp" alt=""><img class="room-symbol" src="assets/flaticon/mammoth.png" alt=""></span><span class="room-copy"><strong>Ice Room</strong><small>Ледяное приключение</small></span></button>
+        <button type="button" class="room-option" data-room="Magic Room" aria-pressed="false"><span class="room-art room-art-magic"><img class="room-figure" src="assets/magic-celebration.webp" alt=""><img class="room-symbol" src="assets/flaticon/monster.png" alt=""></span><span class="room-copy"><strong>Magic Room</strong><small>Мир монстриков</small></span></button>
+        <button type="button" class="room-option" data-room="Rapunzel Room" aria-pressed="false"><span class="room-art room-art-rapunzel"><img class="room-figure" src="assets/rapunzel-celebration.webp" alt=""><img class="room-symbol" src="assets/flaticon/castle.png" alt=""></span><span class="room-copy"><strong>Rapunzel Room</strong><small>Сказочное королевство</small></span></button>
+      </div><details class="icon-credits"><summary>Авторы иконок</summary><p>Иконки с Flaticon: <a href="https://www.flaticon.com/free-icon/game-controller_8674451" target="_blank" rel="noopener noreferrer">Pop Vectors</a>, <a href="https://www.flaticon.com/free-icon/mammoth_2370842" target="_blank" rel="noopener noreferrer">Magnific</a>, <a href="https://www.flaticon.com/free-icon/monster_4925991" target="_blank" rel="noopener noreferrer">juicy_fish</a>, <a href="https://www.flaticon.com/free-icon/castle_9707058" target="_blank" rel="noopener noreferrer">Azland Studio</a>, <a href="https://www.flaticon.com/free-icon/user_847969" target="_blank" rel="noopener noreferrer">Becris</a>.</p></details></div>
+    <div class="form-card step" data-step="1" hidden><p class="card-kicker">02 / ИМЕНИННИК</p><h2>Именинник</h2><p class="card-help">Добавьте имя, возраст и фото.</p>
+      <label for="name">Как зовут именинника?</label><input id="name" name="name" type="text" maxlength="32" placeholder="Например, Арман" autocomplete="off"><span class="error" id="name-error"></span>
+      <label for="age">Сколько лет?</label><div class="stepper"><button type="button" id="age-minus" aria-label="Уменьшить возраст">−</button><input id="age" name="age" type="number" min="1" max="18" inputmode="numeric" placeholder="—"><button type="button" id="age-plus" aria-label="Увеличить возраст">＋</button></div><span class="error" id="age-error"></span>
+      <label>Фото именинника <span class="optional">необязательно</span></label><div class="upload-row"><div id="upload-avatar" class="upload-avatar"><img class="default-avatar" src="assets/flaticon/profile.png" alt=""></div><div><label class="file-button" for="photo">Добавить фото</label><input id="photo" name="photo" class="file-input" type="file" accept="image/*"><button id="remove-photo" class="text-button" type="button" hidden>Убрать фото</button><small>Изображение до 1 МБ</small></div></div><span class="error" id="photo-error"></span>
+    </div>
+    <div class="form-card step" data-step="2" hidden><p class="card-kicker">03 / ДАТА И ВРЕМЯ</p><h2>Когда праздник?</h2><p class="card-help">Укажите дату и время встречи.</p>
+      <label for="date">Дата праздника</label><div class="input-icon"><span>▦</span><input id="date" name="date" type="text" placeholder="ДД.ММ.ГГГГ" inputmode="numeric" maxlength="10"></div><span class="hint">Например: 12.12.2026</span><span class="error" id="date-error"></span>
+      <label for="time">Время</label><div class="input-icon"><span>◷</span><input id="time" name="time" type="text" placeholder="ЧЧ:ММ" inputmode="numeric" maxlength="5"></div><span class="error" id="time-error"></span>
+    </div>
+    <div class="form-card step" data-step="3" hidden><p class="card-kicker">04 / ГОСТИ И СВЯЗЬ</p><h2>Гости и связь</h2><p class="card-help">Чтобы всё было готово к встрече.</p>
+      <label for="phone">WhatsApp организатора <span class="optional">необязательно</span></label><input id="phone" name="phone" type="tel" placeholder="+7 700 123 45 67"><span class="error" id="phone-error"></span>
+      <label for="guests">Имена приглашённых детей <span class="optional">необязательно</span></label><textarea id="guests" name="guests" rows="3" placeholder="Например: Алмаз, Алина, Тимур"></textarea><span class="hint">Имена нужны, чтобы видеть, кто ещё не ответил.</span>
+      <details class="extra"><summary>Дополнительно <span>＋</span></summary><div class="extra-fields">
+      <label for="capacity">Сколько детей помещается?</label><input id="capacity" name="capacity" type="number" min="1" max="500" placeholder="Не указано"><span class="error" id="capacity-error"></span>
+      <label for="days">Ссылка действует после праздника, дней</label><input id="days" name="days" type="number" min="1" max="365" value="14"><span class="error" id="days-error"></span>
+      <label for="promo">Промокод</label><input id="promo" name="promo" maxlength="60" placeholder="Не указан">
+      <label for="voice">Голосовое приглашение</label><label class="file-button audio-button" for="voice">＋ Добавить аудио</label><input id="voice" name="voice" type="file" class="file-input" accept="audio/*"><span class="hint" id="voice-name">Аудио до 1 МБ</span><span class="error" id="voice-error"></span>
+      <p class="settings-note">Настройки только для предпросмотра. В демо не сохраняются.</p>
+      <label for="address">Адрес или ориентир</label><input id="address" maxlength="100" placeholder="Добавьте адрес">
+      <label for="message">Текст приглашения</label><textarea id="message" rows="3" maxlength="180" placeholder="Напишите сообщение гостям"></textarea>
+      <label>Программа праздника</label><div class="checks"><label><input type="checkbox" checked> Поздравление</label><label><input type="checkbox" checked> Аниматоры</label><label><input type="checkbox" checked> Квест</label><label><input type="checkbox" checked> Шоу</label><label><input type="checkbox" checked> Мастер-класс</label></div>
+      </div></details>
+    </div>
+    <p id="form-error" class="error" role="alert"></p>
+    <div class="wizard-actions"><button type="button" class="secondary" id="previous-step">Назад</button><button type="button" class="primary" id="next-step">Далее <span>→</span></button><button type="submit" class="primary" id="submit-event" hidden>Создать приглашение <span>→</span></button></div>
+  </form></div><aside class="desktop-preview preview-slot"></aside></div>
+</section>
+<section id="ready-view" class="screen" hidden><button class="back" type="button" data-view="list">← Праздники</button><div class="ready-mark">✓</div><p class="eyebrow">ВСЁ ГОТОВО</p><h1>Приглашение готово</h1><p class="subtitle" id="ready-subtitle"></p><div class="ready-card"><label>Ссылка на приглашение</label><div class="link-box"><span id="ready-link"></span><button type="button" id="ready-copy">Скопировать</button></div><p class="hint" id="ready-note">Демо-ссылка работает только в этой вкладке.</p></div><a id="ready-open" class="primary full" href="#">Открыть приглашение <span>↗</span></a><button id="ready-dashboard" class="secondary full" type="button">Следить за ответами <span>→</span></button><div class="planned"><button type="button" disabled>Отправить в WhatsApp <small>Скоро, в демо недоступно</small></button><button type="button" disabled>Показать QR-код <small>Скоро, в демо недоступно</small></button></div></section>
+<section id="dashboard-view" class="screen" hidden><button class="back" type="button" data-view="list">← Праздники</button><p class="eyebrow">ОТВЕТЫ ГОСТЕЙ</p><h1 id="event-title"></h1><p class="subtitle" id="event-meta"></p><div id="stats" class="stats"></div><div class="section-title"><h2>Ответы гостей</h2><button id="export" class="text-button" type="button">Скачать CSV ↓</button></div><div id="responses" class="response-list"></div><h2 class="waiting-title">Не ответили</h2><div id="unanswered" class="waiting"></div><div class="dashboard-actions"><a id="open-invitation" class="primary full" href="#">Открыть приглашение <span>↗</span></a><button id="copy-link" class="secondary full" type="button">Скопировать демо-ссылку</button><p id="link-note" class="hint">Демо-ссылка работает только в этой вкладке.</p></div></section>
+</main>
+<template id="preview-template"><div class="preview-shell"><div class="preview-caption"><span>ПРЕДПРОСМОТР</span><span class="preview-live"><i></i> ОБНОВЛЯЕТСЯ</span></div><div class="phone-frame"><div class="phone-speaker"></div><div class="invite-preview"><div class="preview-top"><img src="assets/boombala-logo.webp" alt="BoomBala"><span>ПРИГЛАШЕНИЕ</span></div><div class="preview-inner"><div class="preview-avatar"><img class="default-avatar" src="assets/flaticon/profile.png" alt=""></div><div class="preview-identity"><p class="preview-overline">ПРИГЛАШЕНИЕ НА ДЕНЬ РОЖДЕНИЯ</p><h3 class="preview-name">Имя ребёнка</h3><p class="preview-age">Возраст</p></div><div class="preview-date"><span>ДАТА И ВРЕМЯ</span><strong>Укажите дату</strong></div><span class="preview-room">ROBLOX ROOM</span></div></div></div></div></template>
+</body></html>
