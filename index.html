@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#393b3d" />
+    <meta
+      name="description"
+      content="Персональное приглашение на день рождения в игровой комнате BoomBala."
+    />
+    <title>Приглашение на день рождения · BoomBala</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&amp;family=Nunito:wght@600;700;800;900&amp;family=Playfair+Display:wght@600;700;800&amp;family=Russo+One&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="faq.css" />
+    <link rel="stylesheet" href="guest-demo.css" />
+    <script src="assets/vendor/gsap.min.js" defer></script>
+    <script src="assets/vendor/ScrollTrigger.min.js" defer></script>
+    <script src="assets/vendor/balloons.js" defer></script>
+    <script src="app.js" defer></script>
+    <script src="faq.js" defer></script>
+    <script src="guest-demo.js" defer></script>
+  </head>
+  <body>
+    <div class="studio">
+      <main class="room-selection" id="room-selection">
+        <header class="selection-header">
+          <img src="assets/boombala-logo.webp" alt="BoomBala" />
+          <span>ПРИГЛАШЕНИЯ</span>
+        </header>
+        <div class="selection-content">
+          <p class="selection-eyebrow">ПРИГЛАШЕНИЕ НА ДЕНЬ РОЖДЕНИЯ</p>
+          <h1 id="room-selection-title" tabindex="-1">Выберите комнату<br />и создайте приглашение</h1>
+
+          <div class="room-grid" aria-label="Комнаты для праздника">
+            <button class="room-card" data-room="roblox" type="button">
+              <span class="room-image"><img src="assets/roblox-room.webp" alt="" /><span class="room-status room-status-ready">ДОСТУПНО</span></span>
+              <span class="room-card-footer"><span><strong>Roblox Room</strong><small>Игровой мир</small></span><span class="room-arrow" aria-hidden="true">↗</span></span>
+            </button>
+            <button class="room-card" data-room="ice" type="button">
+              <span class="room-image"><img src="assets/ice-room.webp" alt="" /><span class="room-status room-status-ready">ДОСТУПНО</span></span>
+              <span class="room-card-footer"><span><strong>Ice Room</strong><small>Ледяное приключение</small></span><span class="room-arrow" aria-hidden="true">↗</span></span>
+            </button>
+            <button class="room-card" data-room="magic" type="button">
+              <span class="room-image"><img src="assets/magic-room.webp" alt="" /><span class="room-status room-status-ready">ДОСТУПНО</span></span>
+              <span class="room-card-footer"><span><strong>Magic Room</strong><small>Мир монстриков</small></span><span class="room-arrow" aria-hidden="true">↗</span></span>
+            </button>
+            <button class="room-card" data-room="rapunzel" type="button">
+              <span class="room-image"><img src="assets/rapunzel-room.webp" alt="" /><span class="room-status room-status-ready">ДОСТУПНО</span></span>
+              <span class="room-card-footer"><span><strong>Rapunzel Room</strong><small>Сказочное королевство</small></span><span class="room-arrow" aria-hidden="true">↗</span></span>
+            </button>
+          </div>
+
+        </div>
+      </main>
+      <!-- FAQ-помощник Roblox Room. Стили и логика находятся в faq.css и faq.js. -->
+      <div class="faq-helper" id="faq-helper" hidden>
+        <svg class="faq-avatar-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <symbol id="faq-character" viewBox="0 0 80 96">
+            <path d="M17 51 8 55v21l10-3z" fill="#0573bc" />
+            <g class="faq-wave"><path d="m62 54 10-6 4 19-11 4z" fill="#027abb" /><path d="m71 45 7-2 2 9-8 2z" fill="#ffc87c" /></g>
+            <path d="M24 77h14v15H22zM43 77h14l2 15H43z" fill="#21354b" />
+            <path d="M20 51h41l-3 31H22z" fill="#00a2ed" />
+            <path d="M20 51h41l-4 6H23z" fill="#56c6ff" />
+            <path d="M29 62h22v5H29z" fill="#ffca28" />
+            <path d="M18 19 23 12h37l5 7v31l-5 5H23l-5-5z" fill="#ffca84" />
+            <path d="M18 19 23 12h37l5 7v6H18z" fill="#342546" />
+            <g class="faq-eyes"><rect x="28" y="31" width="4" height="7" rx="2" fill="#222" /><rect x="51" y="31" width="4" height="7" rx="2" fill="#222" /></g>
+            <path d="M34 43q7 5 14 0" fill="none" stroke="#73402e" stroke-width="2.5" stroke-linecap="round" />
+            <path d="M16 20h51v-8H16zM24 6h35v8H24z" fill="#02a84d" />
+          </symbol>
+        </svg>
+        <button class="faq-thought" id="faq-thought" type="button" hidden></button>
+        <section class="faq-dialog" id="faq-dialog" role="dialog" aria-labelledby="faq-title" hidden>
+          <header class="faq-header">
+            <svg class="faq-header-avatar" viewBox="0 0 80 96" aria-hidden="true"><use href="#faq-character" /></svg>
+            <div><strong id="faq-title">Boom Bala</strong><span class="faq-online">онлайн</span></div>
+            <button class="faq-close" id="faq-close" type="button" aria-label="Закрыть помощника">✕</button>
+          </header>
+          <div class="faq-body" id="faq-body">
+            <div class="faq-messages" id="faq-messages" aria-live="polite" aria-relevant="additions"></div>
+            <div class="faq-questions" id="faq-questions" aria-label="Вопросы помощнику" hidden></div>
+          </div>
+          <footer class="faq-footer"><button id="faq-more" type="button" hidden>Другие вопросы</button><button id="faq-reset" type="button">Начать сначала</button></footer>
+        </section>
+        <button class="faq-launcher" id="faq-launcher" type="button" aria-label="Открыть помощника" aria-expanded="false" aria-controls="faq-dialog">
+          <svg class="faq-avatar" viewBox="0 0 80 96" aria-hidden="true"><use href="#faq-character" /></svg>
+        </button>
+      </div>
+
+      <section class="guest-gate" id="guest-gate" aria-labelledby="guest-gate-title" hidden>
+        <form id="guest-gate-form" class="guest-gate-card">
+          <img src="assets/boombala-logo.webp" alt="BoomBala" />
+          <h1 id="guest-gate-title">Как тебя зовут?</h1>
+          <p>Напиши своё имя, чтобы открыть приглашение.</p>
+          <label for="guest-name">Имя гостя</label>
+          <input id="guest-name" name="guestName" type="text" maxlength="60" autocomplete="given-name" required />
+          <button type="submit">Открыть приглашение</button>
+          <button class="guest-back" id="guest-back" type="button">Назад к комнатам</button>
+        </form>
+      </section>
+      <main class="workspace" id="workspace" hidden>
+        <nav class="workspace-nav" aria-label="Навигация редактора">
+          <button id="back-to-rooms" type="button">← Все комнаты</button>
+          <span id="workspace-room">ROBLOX ROOM · ПРЕДПРОСМОТР</span>
+        </nav>
+        <section class="preview-panel" aria-label="Предпросмотр приглашения">
+          <article class="invite-page" aria-label="Сайт-приглашение">
+            <header class="invite-nav">
+              <a class="invite-brand" href="#top" aria-label="BoomBala">
+                <img src="assets/boombala-logo.webp" alt="BoomBala" />
+              </a>
+            </header>
+
+            <div id="top">
+              <section class="invite-hero" aria-labelledby="invite-title">
+                <img class="hero-art" src="assets/roblox-quest-world.webp" alt="Яркий кубический игровой мир с парящими островами и праздничными шарами" />
+                <div class="hero-shade" aria-hidden="true"></div>
+                <div class="hero-copy">
+                  <p class="hero-overline">ТЫ ПОЛУЧИЛ ПРИГЛАШЕНИЕ</p>
+                  <h2 id="invite-title">НОВЫЙ<br />УРОВЕНЬ!</h2>
+                  <p class="hero-intro" hidden></p>
+                  <a class="action-button" href="#party-details">Посмотреть приглашение <span aria-hidden="true">↓</span></a>
+                  <div class="hero-ticket" aria-label="Дата и время праздника">
+                    <span class="ticket-title">ПРИГЛАШЕНИЕ НА ПРАЗДНИК</span>
+                    <div class="ticket-details">
+                      <div><span>ДАТА</span><strong id="hero-date">Дата праздника</strong></div>
+                      <div><span>ВРЕМЯ</span><strong id="hero-time">Время праздника</strong></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="hero-player">
+                  <figure class="photo-frame">
+                    <img id="preview-photo" src="assets/demo-hero.jpg" alt="Пример фото именинника" />
+                    <div class="photo-empty" id="photo-empty" hidden>
+                      <span class="photo-cube" aria-hidden="true">✦</span>
+                      <strong>Фото героя</strong>
+                      <small>Загрузи фото в редакторе</small>
+                    </div>
+                    <figcaption>PLAYER</figcaption>
+                  </figure>
+                  <div class="player-info">
+                    <p class="hero-name" id="preview-name">Имя именинника</p>
+                    <p class="hero-level"><span id="age-label">Исполняется</span> <strong id="preview-age">8 лет</strong></p>
+                  </div>
+                </div>
+
+                <span class="hero-sticker" aria-hidden="true">LET’S<br />PLAY!</span>
+              </section>
+
+
+              <section class="event-details" id="party-details" aria-label="Когда и где праздник">
+                <div class="event-when">
+                  <span class="event-label">КОГДА</span>
+                  <strong id="preview-date">Дата праздника</strong>
+                  <strong id="preview-time">Время праздника</strong>
+                  <p>Ждём тебя на празднике!</p>
+                  <div class="countdown" id="countdown" aria-live="off" hidden><span>ДО ПРАЗДНИКА</span><strong id="countdown-value"></strong></div>
+                  <button class="calendar-button" id="calendar-button" type="button">Добавить в календарь</button>
+                </div>
+                <div class="event-location">
+                  <a class="location-map" id="location-map" href="https://go.2gis.com/6zqEx" target="_blank" rel="noopener noreferrer" aria-label="Открыть адрес в 2ГИС">
+                    <img src="assets/game-map.webp" alt="" loading="lazy" />
+                    <small>Рисованная карта</small>
+                    <span>ОТКРЫТЬ В 2ГИС <span aria-hidden="true">↗</span></span>
+                  </a>
+                  <div class="event-address"><span class="event-label">ГДЕ</span><strong id="preview-place">Roblox Room</strong></div>
+                </div>
+              </section>
+
+              <section class="party-program" aria-labelledby="program-title">
+                <div class="program-heading"><span class="section-label">ВПЕРЁД К ПРИКЛЮЧЕНИЯМ</span><h3 id="program-title">Что будет<br />на празднике?</h3><p class="program-note" hidden>Программа зависит от выбранного пакета. Подробности расскажет организатор.</p></div>
+                <div class="program-content">
+                  <div class="room-picture"><img src="assets/roblox-room.webp" alt="Изображение Roblox Room с сайта BoomBala" loading="lazy" /><span>ROBLOX ROOM</span></div>
+                  <div class="program-list roblox-program">
+                    <details class="program-item" data-activity="greeting" name="party-program">
+                      <summary><span class="activity-art activity-gift" aria-hidden="true"></span><strong>Поздравление именинника</strong><span class="program-toggle" aria-hidden="true">+</span></summary>
+                      <div class="program-panel"><div class="program-detail"><span class="activity-art activity-gift" aria-hidden="true"></span><div><strong>Поздравим именинника!</strong><p>Торжественное поздравление для главного героя праздника. Организатор может выбрать ханское, волшебное или королевское поздравление.</p></div></div></div>
+                    </details>
+                    <details class="program-item" data-activity="animation" name="party-program">
+                      <summary><span class="activity-art activity-balloons" aria-hidden="true"></span><strong>Анимационная программа</strong><span class="program-toggle" aria-hidden="true">+</span></summary>
+                      <div class="program-panel"><div class="program-detail"><span class="activity-art activity-balloons" aria-hidden="true"></span><div><strong>Игры с аниматорами</strong><p>Программу выбирают для компании гостей. Доступны стандартная программа, «Малышник» и подростковый челлендж. Подробности расскажет организатор праздника.</p></div></div></div>
+                    </details>
+                    <details class="program-item program-quest" data-activity="quest" name="party-program">
+                      <summary><span class="activity-art activity-game" aria-hidden="true"></span><strong>Квест Roblox</strong><span class="program-toggle" aria-hidden="true">+</span></summary>
+                      <div class="program-panel"><div class="program-detail"><span class="activity-art activity-game" aria-hidden="true"></span><div><strong>Квест в стиле Roblox</strong><p>Тематический квест для гостей праздника. Его содержание и продолжительность можно уточнить у организатора.</p></div></div></div>
+                    </details>
+                    <details class="program-item" data-activity="show" name="party-program">
+                      <summary><span class="activity-art activity-show" aria-hidden="true"></span><strong>Шоу на выбор</strong><span class="program-toggle" aria-hidden="true">+</span></summary>
+                      <div class="program-panel"><div class="program-detail"><span class="activity-art activity-show" aria-hidden="true"></span><div><strong>Время шоу!</strong><p>В программе одно шоу на выбор: серебряное, неоновое, летающих корзинок, дино-шоу, «Что в коробке?» или поролоновое.</p></div></div></div>
+                    </details>
+                    <details class="program-item" data-activity="workshop" name="party-program">
+                      <summary><span class="activity-art activity-artwork" aria-hidden="true"></span><strong>Мастер-класс</strong><span class="program-toggle" aria-hidden="true">+</span></summary>
+                      <div class="program-panel"><div class="program-detail"><span class="activity-art activity-artwork" aria-hidden="true"></span><div><strong>Сделаем что-то вместе</strong><p>В программу входит мастер-класс с шаром ШДМ. Уточни детали у организатора.</p></div></div></div>
+                    </details>
+                  </div>
+                  <div class="program-list room-program" hidden>
+                    <details class="program-item" data-activity="greeting">
+                      <summary><span class="theme-activity" aria-hidden="true"></span><strong>Поздравление</strong><span class="program-toggle" aria-hidden="true">+</span></summary>
+                      <div class="program-panel"><div class="program-detail"><span class="theme-activity" aria-hidden="true"></span><div><strong>Поздравим именинника</strong><p>Как именно пройдёт поздравление, расскажет организатор праздника.</p></div></div></div>
+                    </details>
+                    <details class="program-item" data-activity="animation">
+                      <summary><span class="theme-activity" aria-hidden="true"></span><strong>Игры с аниматорами</strong><span class="program-toggle" aria-hidden="true">+</span></summary>
+                      <div class="program-panel"><div class="program-detail"><span class="theme-activity" aria-hidden="true"></span><div><strong>Будем играть вместе</strong><p>Анимационную программу подбирают для гостей праздника.</p></div></div></div>
+                    </details>
+                    <details class="program-item" data-activity="quest">
+                      <summary><span class="theme-activity" aria-hidden="true"></span><strong>Квест</strong><span class="program-toggle" aria-hidden="true">+</span></summary>
+                      <div class="program-panel"><div class="program-detail"><span class="theme-activity" aria-hidden="true"></span><div><strong>Приключение для гостей</strong><p>Тему и подробности квеста расскажет организатор.</p></div></div></div>
+                    </details>
+                    <details class="program-item" data-activity="show">
+                      <summary><span class="theme-activity" aria-hidden="true"></span><strong>Шоу</strong><span class="program-toggle" aria-hidden="true">+</span></summary>
+                      <div class="program-panel"><div class="program-detail"><span class="theme-activity" aria-hidden="true"></span><div><strong>Праздничное шоу</strong><p>Подробности шоу можно уточнить у организатора.</p></div></div></div>
+                    </details>
+                    <details class="program-item" data-activity="workshop">
+                      <summary><span class="theme-activity" aria-hidden="true"></span><strong>Мастер-класс</strong><span class="program-toggle" aria-hidden="true">+</span></summary>
+                      <div class="program-panel"><div class="program-detail"><span class="theme-activity" aria-hidden="true"></span><div><strong>Создадим что-то своими руками</strong><p>Узнать о мастер-классе и его условиях можно у организатора.</p></div></div></div>
+                    </details>
+                  </div>
+                </div>
+              </section>
+
+              <section class="guest-info" aria-labelledby="guest-title">
+                <div><span class="section-label">ПЕРЕД ВСТРЕЧЕЙ</span><h3 id="guest-title">Собираемся<br />на праздник!</h3></div>
+                <div class="guest-rules">
+                  <article><div class="rule-art rule-socks" aria-hidden="true"></div><div><h4>Чистые носочки</h4><p>В игровой зоне носки нужны всем: и детям, и взрослым.</p></div></article>
+                  <article><div class="rule-art rule-adult" aria-hidden="true"></div><div><h4>Приходи со взрослым</h4><p>Рядом должен быть взрослый, который за тобой присмотрит.</p></div></article>
+                  <article><div class="rule-art rule-cafe" aria-hidden="true"></div><div><h4>Перекус в кафе</h4><p>Еда и напитки остаются в кафе. Свою еду приносить нельзя.</p></div></article>
+                  <article><div class="rule-art rule-play" aria-hidden="true"></div><div><h4>Играем аккуратно</h4><p>Не толкайся и следуй правилам игровых зон.</p></div></article>
+                  <a href="https://boombala.kz/rules" target="_blank" rel="noopener noreferrer">Все правила для взрослых ↗</a>
+                </div>
+              </section>
+
+              <section class="rsvp-section" aria-labelledby="rsvp-title">
+                <h3 id="rsvp-title">Ты придёшь?</h3>
+                <p id="rsvp-question">Сообщи организатору, получится ли прийти.</p>
+                <a class="rsvp-button" id="rsvp-link" href="#" target="_blank" rel="noopener noreferrer" hidden>Приду ✓</a>
+                <a class="rsvp-button rsvp-decline" id="rsvp-decline" target="_blank" rel="noopener noreferrer" hidden>Не смогу прийти</a>
+                <p class="rsvp-hint" id="rsvp-hint">Добавь номер организатора в настройках, чтобы появилась кнопка.</p>
+              </section>
+
+              <section class="message-section" aria-label="Сообщение именинника"><img class="message-logo" src="assets/boombala-logo.webp" alt="BoomBala" /><div><p>СООБЩЕНИЕ ОТ ИМЕНИННИКА</p><blockquote id="preview-message">Жду тебя на празднике!</blockquote></div></section>
+              <footer class="invite-footer"><img class="footer-logo" src="assets/boombala-logo.webp" alt="BoomBala" /><span>До встречи на празднике!</span></footer>
+            </div>
+          </article>
+        </section>
+        <details class="editor-panel"><summary><span class="editor-open-label">Настроить демо ✎</span><span class="editor-close-label">← Вернуться к приглашению</span></summary><div class="editor-content"><div class="editor-heading"><p class="eyebrow">ROBLOX ROOM · ДЕМО</p><h1>Настрой приглашение</h1><p>Заполни данные и вернись к приглашению, чтобы посмотреть результат.</p></div>
+          <form id="invite-form" autocomplete="off">
+            <fieldset>
+              <legend>Именинник</legend>
+              <label for="child-name">Имя ребёнка</label>
+              <input id="child-name" name="childName" type="text" maxlength="32" value="Арман" placeholder="Например, Арман" />
+
+              <div class="field-row">
+                <div>
+                  <label for="child-age">Возраст</label>
+                  <input id="child-age" name="childAge" type="number" min="1" max="18" inputmode="numeric" value="8" placeholder="8" />
+                </div>
+                <div>
+                  <label for="event-date">Дата</label>
+                  <input id="event-date" name="eventDate" type="date" value="2026-12-12" />
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Праздник</legend>
+              <div class="field-row">
+                <div>
+                  <label for="event-time">Время</label>
+                  <input id="event-time" name="eventTime" type="time" value="15:00" />
+                </div>
+                <div>
+                  <label for="event-place">Комната</label>
+                  <input id="event-place" name="eventPlace" type="text" value="Roblox Room" maxlength="48" />
+                </div>
+              </div>
+
+              <label for="event-address">Адрес или ориентир</label>
+              <input id="event-address" name="eventAddress" type="text" value="Алматы, ул. Шолохова, 29 · ТРК «Жібек жолы», 3 этаж" maxlength="100" placeholder="Добавь адрес праздника" />
+
+              <label for="event-message">Текст приглашения</label>
+              <textarea id="event-message" name="eventMessage" rows="3" maxlength="180">Привет! Я приглашаю тебя на свой день рождения. Приходи играть и веселиться вместе! Жду тебя!</textarea>
+            </fieldset>
+
+            <fieldset class="activity-settings">
+              <legend>Программа праздника</legend>
+              <label><input type="checkbox" name="activity" value="greeting" checked /> Поздравление</label>
+              <label><input type="checkbox" name="activity" value="animation" checked /> Аниматоры</label>
+              <label><input type="checkbox" name="activity" value="quest" checked /> Квест</label>
+              <label><input type="checkbox" name="activity" value="show" checked /> Шоу</label>
+              <label><input type="checkbox" name="activity" value="workshop" checked /> Мастер-класс</label>
+            </fieldset>
+            <fieldset>
+              <legend>Ответы гостей</legend>
+              <label for="organizer-phone">WhatsApp организатора</label>
+              <input id="organizer-phone" name="organizerPhone" type="tel" inputmode="tel" placeholder="Например, +7 700 123 45 67" />
+              <p class="field-hint">Укажите номер с кодом страны. Гость сам отправит сообщение.</p>
+            </fieldset>
+
+            <fieldset>
+              <legend>Фото</legend>
+              <label for="child-photo">Фото именинника</label>
+              <input id="child-photo" name="childPhoto" type="file" accept="image/*" />
+              <p class="field-hint" id="photo-status" aria-live="polite">Фото показывается только в этом предпросмотре и не отправляется на сервер.</p>
+              <button class="clear-photo" id="clear-photo" type="button" disabled>Убрать фото</button>
+            </fieldset>
+          </form>
+        <p class="editor-note">Пример MAGIC PARTY. Фото и данные можно заменить. Ссылка пока не создаётся.</p><button class="editor-done" type="button">Посмотреть приглашение</button></div></details>
+      </main>
+    </div>
+  </body>
+</html>
